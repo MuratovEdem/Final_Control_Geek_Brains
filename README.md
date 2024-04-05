@@ -19,10 +19,10 @@
 7. В подключенном MySQL репозитории создать базу данных “Друзья
 человека”
 8. Создать таблицы с иерархией из диаграммы в БД
-9. Заполнить низкоуровневые таблицы именами(животных), командами
-которые они выполняют и датами рождения
 
 ~~~
+CREATE DATABASE human_friends;
+
 CREATE TABLE `animals` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`type` ENUM('Pets', 'Pack'),
@@ -89,3 +89,33 @@ CREATE TABLE `donkeys` (
 	FOREIGN KEY (`id`) REFERENCES `pack_animals` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 );
 ~~~
+
+9. Заполнить низкоуровневые таблицы именами(животных), командами
+которые они выполняют и датами рождения
+
+~~~
+INSERT INTO animals (`type`) VALUES ('Pets');
+INSERT INTO home_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Dog');
+INSERT INTO dogs (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Рей', '2022-06-02', 'Апорт');
+
+INSERT INTO animals (`type`) VALUES ('Pets');
+INSERT INTO home_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Cat');
+INSERT INTO cats (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Рыжик', '2020-02-12', 'Лежать');
+
+INSERT INTO animals (`type`) VALUES ('Pets');
+INSERT INTO home_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Hamster');
+INSERT INTO hamsters (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Рыжик', '2023-11-21', '');
+
+INSERT INTO animals (`type`) VALUES ('Pack');
+INSERT INTO pack_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Horse');
+INSERT INTO horses (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Плотва', '2015-01-01', 'Шевелись');
+
+INSERT INTO animals (`type`) VALUES ('Pack');
+INSERT INTO pack_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Camel');
+INSERT INTO camels (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Горбатый', '2014-12-15', 'Пей');
+
+INSERT INTO animals (`type`) VALUES ('Pack');
+INSERT INTO pack_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Donkey');
+INSERT INTO donkeys (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Мурка', '2024-02-03', 'Стой');
+~~~
+
