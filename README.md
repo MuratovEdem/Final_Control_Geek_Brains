@@ -21,3 +21,71 @@
 8. Создать таблицы с иерархией из диаграммы в БД
 9. Заполнить низкоуровневые таблицы именами(животных), командами
 которые они выполняют и датами рождения
+
+~~~
+CREATE TABLE `animals` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`type` ENUM('Pets', 'Pack'),
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `pets` (
+	`id` INT(11) NULL,
+	`name_animals` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `animals` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `pack_animals` (
+	`id` INT(11) NULL,
+	`name_animals` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `animals` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `dogs` (
+	`id` INT(11) NULL,
+	`name` TEXT NULL,
+	`date` DATE NULL,
+	`commands` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `pets` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `cats` (
+	`id` INT(11) NULL,
+	`name` TEXT NULL,
+	`date` DATE NULL,
+	`commands` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `pets` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `hamsters` (
+	`id` INT(11) NULL,
+	`name` TEXT NULL,
+	`date` DATE NULL,
+	`commands` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `pets` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `horses` (
+	`id` INT(11) NULL,
+	`name` TEXT NULL,
+	`date` DATE NULL,
+	`commands` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `pack_animals` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `camels` (
+	`id` INT(11) NULL,
+	`name` TEXT NULL,
+	`date` DATE NULL,
+	`commands` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `pack_animals` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE `donkeys` (
+	`id` INT(11) NULL,
+	`name` TEXT NULL,
+	`date` DATE NULL,
+	`commands` TEXT NULL,
+	FOREIGN KEY (`id`) REFERENCES `pack_animals` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+~~~
