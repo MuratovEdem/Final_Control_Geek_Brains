@@ -119,3 +119,44 @@ INSERT INTO pack_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Donke
 INSERT INTO donkeys (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Мурка', '2024-02-03', 'Стой');
 ~~~
 
+10. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
+питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
+
+~~~
+DELETE FROM `animals` WHERE id IN (SELECT id FROM `camels`);
+
+SELECT * FROM `horses`
+UNION
+SELECT * FROM `donkeys`
+~~~
+
+11.Создать новую таблицу “молодые животные” в которую попадут все
+животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
+до месяца подсчитать возраст животных в новой таблице
+
+~~~
+CREATE TEMPORARY TABLE `young_animals` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`animal_type` ENUM('dogs', 'cats', 'hamsters', 'horses', 'camels', 'donkeys'),
+	`name` TEXT NULL,
+	`age_months` DECIMAL(5,2),
+	PRIMARY KEY (`id`)
+);
+
+INSERT INTO `young_animals` (`animal_type`, `name`, `age_months`)
+SELECT animal_type, name, TIMESTAMPDIFF(MONTH,`date`,CURDATE()) AS age_months FROM 
+    (SELECT 'dogs' as animal_type, `name`, `date` FROM `dogs`
+     UNION ALL SELECT 'cats', `name`, `date` FROM `cats`
+     UNION ALL SELECT 'hamsters', `name`, `date` FROM `hamsters`
+     UNION ALL SELECT 'horses', `name`, `date` FROM `horses`
+     UNION ALL SELECT 'camels', `name`, `date` FROM `camels`
+     UNION ALL SELECT 'donkeys', `name`, `date` FROM `donkeys`
+    ) AS animals
+WHERE `date` BETWEEN DATE_SUB(NOW(), INTERVAL 3 YEAR) AND DATE_SUB(NOW(), INTERVAL 1 YEAR);
+
+SELECT * FROM young_animals;
+~~~
+
+12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
+прошлую принадлежность к старым таблицам.
+
