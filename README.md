@@ -95,15 +95,15 @@ CREATE TABLE `donkeys` (
 
 ~~~
 INSERT INTO animals (`type`) VALUES ('Pets');
-INSERT INTO home_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Dog');
+INSERT INTO pets (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Dog');
 INSERT INTO dogs (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Рей', '2022-06-02', 'Апорт');
 
 INSERT INTO animals (`type`) VALUES ('Pets');
-INSERT INTO home_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Cat');
+INSERT INTO pets (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Cat');
 INSERT INTO cats (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Рыжик', '2020-02-12', 'Лежать');
 
 INSERT INTO animals (`type`) VALUES ('Pets');
-INSERT INTO home_animals (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Hamster');
+INSERT INTO pets (`id`, `name_animals`) VALUES (LAST_INSERT_ID(), 'Hamster');
 INSERT INTO hamsters (`id`, `name`, `date`, `commands`) VALUES (LAST_INSERT_ID(), 'Рыжик', '2023-11-21', '');
 
 INSERT INTO animals (`type`) VALUES ('Pack');
