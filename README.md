@@ -160,3 +160,45 @@ SELECT * FROM young_animals;
 12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
 
+~~~
+SELECT 
+    animals.id AS animal_id,
+    animals.id.type AS animal_type,
+    pets.id AS pets_id,
+    pets.name_animals AS pets_name,
+    pack_animals.id AS pack_animal_id,
+    pack_animals.name_animals AS pack_animal_name,
+    dogs.id AS dog_id,
+    dogs.name AS dog_name,
+    dogs.date AS dog_date,
+    dogs.commands AS dog_commands,
+    cats.id AS cat_id,
+    cats.name AS cat_name,
+    cats.date AS cat_date,
+    cats.commands AS cat_commands,
+    hamsters.id AS hamster_id,
+    hamsters.name AS hamster_name,
+    hamsters.date AS hamster_date,
+    hamsters.commands AS hamster_commands,
+    horses.id AS horse_id,
+    horses.name AS horse_name,
+    horses.date AS horse_date,
+    horses.commands AS horse_commands,
+    camels.id AS camel_id,
+    camels.name AS camel_name,
+    camels.date AS camel_date,
+    camels.commands AS camel_commands,
+    donkeys.id AS donkey_id,
+    donkeys.name AS donkey_name,
+    donkeys.date AS donkey_date,
+    donkeys.commands AS donkey_commands
+FROM animals
+LEFT JOIN pets ON animals.id = pets.id
+LEFT JOIN pack_animals ON animals.id = pack_animals .id
+LEFT JOIN dogs ON pets.id = dogs.id
+LEFT JOIN cats ON pets.id = cats.id
+LEFT JOIN hamsters ON pets.id = hamsters.id
+LEFT JOIN horses ON pack_animals.id = horses.id
+LEFT JOIN camels ON pack_animals.id = camels.id
+LEFT JOIN donkeys ON pack_animals.id = donkeys.id;
+~~~
