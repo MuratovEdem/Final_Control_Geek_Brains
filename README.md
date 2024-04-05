@@ -8,7 +8,7 @@
 из этого репозитория.
 4. Установить и удалить deb-пакет с помощью dpkg.
 5. Выложить историю команд в терминале ubuntu
-![Model]((https://github.com/MuratovEdem/Final_Control_Geek_Brains/blob/main/CommandHistory.png))
+![Model](https://github.com/MuratovEdem/Final_Control_Geek_Brains/blob/main/CommandHistory.png)
 
 6. Нарисовать диаграмму, в которой есть класс родительский класс, домашние
 животные и вьючные животные, в составы которых в случае домашних
